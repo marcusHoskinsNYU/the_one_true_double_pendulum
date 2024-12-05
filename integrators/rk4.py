@@ -2,8 +2,18 @@ import numpy as np
 import numpy as np
 import math
 import matplotlib.pyplot as plt
+import os
 
-cwd='/Users/Krishna/Documents/repositories/double_pendulum'
+cwd='/Users/Krishna/Documents/repositories/the_one_true_double_pendulum'
+
+'''
+#if you are not krishna, then uncomment this code
+
+cwd=os.path.dirname(cwd)
+'''
+
+
+
 '''
 Convention:
 
@@ -77,9 +87,6 @@ def rk4(a: float, b: float, N: int, f, r: np.ndarray):
 
         # Update state
         r = r + (k1 + 2 * k2 + 2 * k3 + k4) / 6
-        r[0] = r[0] % (2 * np.pi)  # bind theta1 between 0 and 2pi
-        r[1] = r[1] % (2 * np.pi)  # bind  theta2 between 0 and 2pi
-
         # Clamp values if necessary to prevent overflow
         max_value = 1e7
         if np.any(np.abs(r[3]) > max_value):
@@ -90,4 +97,4 @@ def rk4(a: float, b: float, N: int, f, r: np.ndarray):
 N_steps=100000
 
 partb=rk4(a=0.0,b=100, N=N_steps,  f=f,r=initial_vals.copy())
-np.savetxt( f'{cwd}/results/partb_rk4_{N_steps/1000}k_timesteps.csv', partb, delimiter=',', header='theta1,theta2,omega1,omega2,t', comments='', fmt='%f')
+np.savetxt( f'{cwd}/integratorResults/partb_rk4_{N_steps/1000}k_timesteps_100s.csv', partb, delimiter=',', header='theta1,theta2,omega1,omega2,t', comments='', fmt='%f')
