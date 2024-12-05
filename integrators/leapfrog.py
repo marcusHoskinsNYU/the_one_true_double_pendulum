@@ -9,12 +9,12 @@ omega2_0 = 0 # initially at rest
 t0 = 0
 tf = 100.
 steps = 10000
-def leapfrog(omega1_init, omega2_init, theta1_init, theta2_init, t_final, tSteps):
+def leapfrog(r, t_final, tSteps):
     # This function implements the leapfrog method of numerical integration
     #
     # INPUTS:
-    # omega1_init, omega2_init: initial omegas
-    # theta1_init, theta2_init: initial thetas
+    # r[0], r[1]: initial thetas
+    # r[2], r[3]: initial omegas
     # t_final: the final time to which the system is allowed to evolve
     # tSteps: the number of steps taken from the initial time (here assumed to be zero) to f_final
     #
@@ -25,6 +25,11 @@ def leapfrog(omega1_init, omega2_init, theta1_init, theta2_init, t_final, tSteps
 
     t0 = 0
 
+    theta1_init = r[0]
+    theta2_init = r[1]
+    omega1_init = r[2]
+    omega2_init = r[3]
+    
     deltaT = t_final/tSteps
     tList = np.arange(t0, t_final, step=deltaT)
 
