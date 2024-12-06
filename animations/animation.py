@@ -11,7 +11,7 @@ path='/Users/Krishna/Documents/repositories/the_one_true_double_pendulum'
 path=os.path.dirname(cwd)
 '''
 
-filename='partb_rk4_20s_0.2_ms_timesteps.csv'
+filename='partb_rk4_20s_0.2ms_timesteps.csv'
 
 dp = np.loadtxt(f'{path}/results/{filename}', delimiter=',', skiprows=1)
 
@@ -64,6 +64,6 @@ def animate(i):
 anim = FuncAnimation(fig, animate, init_func=init, frames=len(tList), blit=True)
 
 # Save the animation
-anim.save(f"{path}/animations/{filename}_animation.gif", writer="pillow", fps=100)
+anim.save(f"{path}/animations/{filename}_animation.mp4", fps=100)
 
 

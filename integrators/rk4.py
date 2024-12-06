@@ -56,22 +56,21 @@ initial_vals=np.array([ theta1 , theta2 , omega1, omega2], np.float64) # a vecto
 
 
 
-def rk4(t: float, N: int, f, r: np.ndarray):
+def rk4(tf: np.float64, h: np.float64, f, r: np.ndarray):
     """
     4th-order RK integrator with linear step size.
 
     Inputs:
     t  = final time value
-    N  = number of time steps
     f  = function representing the differential equation
     r  = initial state [theta1, theta2, omega1, omega2]
 
     Outputs:
     Returns an Nx5 array of [theta1, theta2, omega1, omega2, t].
     """
-    h = t/ N
-    tpoints = np.arange(0, t, h)
-    results = np.zeros((N, len(r)+1))
+    tpoints = np.arange(0, tf, h)
+
+    results = np.zeros((len(tpoints), len(r)+1))
 
     for i, t in enumerate(tpoints):
         # Store current state and time
@@ -87,9 +86,9 @@ def rk4(t: float, N: int, f, r: np.ndarray):
         r = r + (k1 + 2 * k2 + 2 * k3 + k4) / 6
     return results
 
-N_steps=2000
+
 t_final=20
 
-deltaT=t_final/N_steps
-partb=rk4(t=t_final, N=N_steps,  f=f,r=initial_vals.copy())
-np.savetxt( f'{path}/results/partb_rk4_{t_final}s_{deltaT*1000}ms_timesteps.csv', partb, delimiter=',', header='theta1,theta2,omega1,omega2,t', comments='', fmt='%f') 
+dt=0.00001
+partb=rk4(tf=t_final, h=dt,  f=f,r=initial_vals.copy())
+np.savetxt( f'{path}/results/partb_rk4_{t_final}s_{dt*1e6}us_timesteps.csv', partb, delimiter=',', header='theta1,theta2,omega1,omega2,t', comments='', fmt='%f') 

@@ -1,5 +1,14 @@
 import numpy as np
 import math
+import os
+
+path='/Users/Krishna/Documents/repositories/the_one_true_double_pendulum'
+
+
+#if you are not krishna, then uncomment this code:
+#path=os.path.dirname(cwd)
+
+
 
 # || INITIAL CONDITIONS
 theta1_0 = math.radians(0)
@@ -80,3 +89,17 @@ def leapfrog(r, t_final, tSteps):
         theta2 = theta2 + k2_2Theta
 
     return omega1List, omega2List, theta1List, theta2List, tList
+
+
+theta1=np.pi/2
+theta2=np.pi/2
+omega1=0
+omega2=0
+
+initial_vals=np.array([ theta1 , theta2 , omega1, omega2], np.float64) # a vector of our initial conditions for x, y, vx and vy
+
+dt=0.001
+t_final=20
+
+partb=leapfrog(initial_vals,t_final=20,tSteps=dt)
+np.savetxt(f'{path}/results/partb_leapfrog_{t_final}s_{dt*1e6}us_timesteps.csv', partb, delimiter=',', header='theta1,theta2,omega1,omega2,t', comments='', fmt='%f') 
