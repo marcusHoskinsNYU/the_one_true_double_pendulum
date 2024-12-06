@@ -6,11 +6,10 @@ import os
 
 path='/Users/Krishna/Documents/repositories/the_one_true_double_pendulum'
 
-'''
-#if you are not krishna, then uncomment this code
 
-cwd=os.path.dirname(cwd)
-'''
+#if you are not krishna, then uncomment this code:
+#path=os.path.dirname(cwd)
+
 
 
 
@@ -88,7 +87,7 @@ def rk4(t: float, N: int, f, r: np.ndarray):
         r = r + (k1 + 2 * k2 + 2 * k3 + k4) / 6
     return results
 
-N_steps=100
+N_steps=2000
 t_final=20
 
 deltaT=t_final/N_steps
