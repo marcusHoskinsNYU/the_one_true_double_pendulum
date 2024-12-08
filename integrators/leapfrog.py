@@ -98,6 +98,7 @@ omega2=0
 
 initial_vals=np.array([ theta1 , theta2 , omega1, omega2], np.float64) # a vector of our initial conditions for x, y, vx and vy
 
+
 dt=0.001
 t_final=20
 
