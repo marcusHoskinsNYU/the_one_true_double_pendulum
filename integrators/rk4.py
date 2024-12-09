@@ -87,7 +87,7 @@ def rk4(tf: np.float64, h: np.float64, f, r: np.ndarray):
     return results
 
 
-t_final=20
+t_final=80
 
 dt=0.00001
 partb=rk4(tf=t_final, h=dt,  f=f,r=initial_vals.copy())
