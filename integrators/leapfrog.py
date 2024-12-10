@@ -79,7 +79,7 @@ def leapfrog(r, t_final, dt):
         theta1 = theta1 + k2_1Theta
         theta2 = theta2 + k2_2Theta
 
-    return omega1List, omega2List, theta1List, theta2List, tList
+    return theta1List, theta2List, omega1List, omega2List, tList
 
 
 theta1=np.pi/2
