@@ -4,11 +4,11 @@ import sys
 import matplotlib.pyplot as plt
 
 
-# Add the parent directory to sys.path
+#Add the parent directory to sys.path otherwise i cant import rk4
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(parent_dir)
 
-from integrators import rk4, omegaDots 
+from integrators import rk4 
 path = os.getcwd()
 
 
@@ -79,51 +79,13 @@ def compute_distances(trajectories, plot = False):
         time_data = np.linspace(0, time_vals * dt, time_vals)  # Generate time values assuming a constant dt
         for dist in distances:
             plt.plot(time_data, dist)
+
         plt.xlabel('Time (s)')
         plt.ylabel('Distance')
         plt.title('Distance between Fiducial and Perturbed Trajectories')
         plt.show()
 
     return distances
-
-from scipy.stats import linregress
-
-def compute_lyapunov_exponent(distances, dt, fit_start=0, fit_end=None, plot=True):
-    """
-    Compute the largest Lyapunov exponent using the growth rate of distances.
-
-    distances: List of arrays, where each array is the distance over time for one perturbed trajectory.
-    dt: Time step used in the integration.
-    fit_start: Index to start the fit (to exclude transient behavior).
-    fit_end: Index to end the fit (to avoid saturation).
-    plot: Whether to plot ln(distance) vs. time and the fit.
-
-    Returns:
-        lyapunov_exponents: List of estimated Lyapunov exponents for each perturbed trajectory.
-    """
-    time = np.arange(len(distances[0])) * dt
-    lyapunov_exponents = []
-
-    for distance in distances:
-        # Restrict to the fit region
-        log_distance = np.log(distance[fit_start:fit_end])
-        time_fit = time[fit_start:fit_end]
-
-        # Perform linear regression
-        slope, intercept, r_value, p_value, std_err = linregress(time_fit, log_distance)
-        lyapunov_exponents.append(slope)  # Slope corresponds to lambda
-
-        if plot:
-            plt.plot(time_fit, log_distance, label='ln(d(t))')
-            plt.plot(time_fit, slope * time_fit + intercept, label=f'Fit: λ = {slope:.3f}')
-            plt.xlabel('Time (s)')
-            plt.ylabel('ln(distance)')
-            plt.legend()
-            plt.title('Lyapunov Exponent Estimation')
-            plt.show()
-
-    return lyapunov_exponents
-
 
 
 #fiducial initial conditions for stationary point 1
@@ -139,20 +101,13 @@ r1=np.array([ theta1  , theta2 , omega1, omega2], np.float64)
 trajectories = get_traj(r1)  # Assuming this function returns a list of fiducial and perturbed trajectories
 distances = compute_distances(trajectories) 
 
-fit_start = 100  # Skip initial transient
-fit_end = 1000   # Adjust as needed
-lyapunov_exponents = compute_lyapunov_exponent(distances, dt, fit_start=fit_start, fit_end=fit_end)
-print("Estimated Lyapunov exponents:", lyapunov_exponents)
+
+
+
+
 
 
 '''
-
-
-
-
-
-
-
 
 #fiducial initial conditions for stationary point 2
 theta1=0
