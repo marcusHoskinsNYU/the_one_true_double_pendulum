@@ -91,8 +91,8 @@ def rk4(tf: np.float64, h: np.float64, f, r: np.ndarray):
         # Update state
         r = r + (k1 + 2 * k2 + 2 * k3 + k4) / 6
 
-        r[0] = r[0] % (2 * math.pi)  # Wrap theta1
-        r[1] = r[1] % (2 * math.pi)  # Wrap theta2
+        #r[0] = r[0] % (2 * math.pi)  # Wrap theta1
+        #r[1] = r[1] % (2 * math.pi)  # Wrap theta2
     return results
 
 
