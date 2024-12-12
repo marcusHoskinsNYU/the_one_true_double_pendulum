@@ -13,7 +13,7 @@ path='/Users/Krishna/Documents/repositories/the_one_true_double_pendulum'
 rk4_10us_timesteps=np.loadtxt(f'{path}/results/partb_rk4_80s_10.0us_timesteps.csv', delimiter=',', skiprows=1)
 
 #now I am going to compare 10us to much larger timesteps. I am going to try 500us, 1500us, 2000us etc.. and see how far off they are from the 10us timestep prediction
-#timesteps=np.array([500.0,1500.0,2000.0,2500.0,3000.0]) #in microseconds
+#timesteps=np.array([500.0,1500.0,2000.0,2500.0,3000.0]) in microseconds
 
 timesteps=np.arange(500,3500,100)
 
@@ -22,7 +22,7 @@ rk4_10us_filtered=[]
 
 tfinal=30
 
-
+#first im going to 
 for i in range(len(timesteps)):
 
     file=np.loadtxt(f'{path}/results/partb_rk4_80s_{timesteps[i]}us_timesteps.csv', delimiter=',', skiprows=1)
@@ -148,7 +148,9 @@ def plot_rms_err(timesteps=timesteps, files=files, q=1, tfinal=10,log=False ):
         plt.title(f'root mean squared error after {tfinal}s')
         plt.savefig(f'{path}/figures/rk4_{x[q]}_log_rms_err_vs_stepsize_after_{tfinal}s.png')
 
-#plot_err(timesteps=timesteps, files=files, q=3, tfinal=40)
+
+
+plot_err(timesteps=timesteps, files=files, q=3, tfinal=40)
 
 plot_rms_err(timesteps=timesteps, files=files, q=0, tfinal=10,log=False )
 
