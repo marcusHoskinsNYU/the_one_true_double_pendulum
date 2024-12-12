@@ -84,7 +84,7 @@ def compute_distances(stationary_idx, trajectories, plot = False, save_file =  N
     print(f'getting distances and plotting')
     perturbed_trajs = trajectories[1:]
     fiducial_traj = trajectories[0]
-    time_vals = fiducial_traj.shape[0]
+    time_vals = len(fiducial_traj)
 
     distances = []
     
@@ -132,7 +132,7 @@ def runrunrun (stationary_idx, theta1, theta2, omega1, omega2, t_final, dt, num,
 "Uncomment the one you wish to examine"
 
 
-#"""
+"""
 #######################  begin stationary point 1: ###################
 func = rk4.f
 
@@ -148,7 +148,7 @@ perturbationsize=1e-4
 num = 10
 runrunrun(stationary_idx, theta1, theta2, omega1, omega2,t_final, dt, num, func, perturbation_scale=perturbationsize )
 ########################## end stationary point 1 #######################
-#""
+"""
 
 
 """
@@ -169,7 +169,7 @@ runrunrun(stationary_idx, theta1, theta2, omega1, omega2,t_final, dt, num, func,
 #######################  end stationary point 2: ###################
 """
 
-"""
+#"""
 #######################  begin stationary point 3: ###################
 func = rk4.f
 theta1=np.pi
@@ -184,5 +184,5 @@ perturbationsize=1e-4
 num = 10
 runrunrun(stationary_idx, theta1, theta2, omega1, omega2,t_final, dt, num, func, perturbation_scale=perturbationsize )
 ########################## end stationary point 3 #######################
-"""
+#"""
 
