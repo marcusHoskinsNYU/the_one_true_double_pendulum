@@ -10,7 +10,7 @@ path='/Users/Krishna/Documents/repositories/the_one_true_double_pendulum'
 
 #if you are not krishna, then uncomment this code:
 #path=os.path.dirname(cwd)
-path = os.getcwd()
+#path = os.getcwd()
 
 
 
@@ -96,19 +96,19 @@ def rk4(tf: np.float64, h: np.float64, f, r: np.ndarray):
     return results
 
 
-t_final=80
+# t_final=80
 
-dt=3500e-6
-tsteps=np.arange(500,3500,100) #microseconds
-print(tsteps)
+# dt=3500e-6
+# tsteps=np.arange(500,3500,100) #microseconds
+# print(tsteps)
 
-for timestep in tsteps:
-    partb=rk4_integrator(tf=t_final, h=timestep*1e-6,  f=f,r=initial_vals.copy())
-    np.savetxt( f'{path}/results/partb_rk4_{t_final}s_{timestep}us_timesteps.csv', partb, delimiter=',', header='theta1,theta2,omega1,omega2,t', comments='', fmt='%f') 
+# for timestep in tsteps:
+#     partb=rk4(tf=t_final, h=timestep*1e-6,  f=f,r=initial_vals.copy())
+#     np.savetxt( f'{path}/results/rk4_part2/partb_rk4_{t_final}s_{timestep}us_timesteps.csv', partb, delimiter=',', header='theta1,theta2,omega1,omega2,t', comments='', fmt='%f') 
 
-t_final=1000
-dt=0.001
+# t_final=1000
+# dt=0.001
 
 #Part c 
 
-np.savetxt( f'{path}/results/part3_rk4_{t_final}s_{initial_vals[0]:.2f}_{initial_vals[1]:.2f}_{initial_vals[2]:.3f}_{initial_vals[3]:.3f}_{dt*1e6}us_timesteps.csv', partb, delimiter=',', header='theta1,theta2,omega1,omega2,t', comments='', fmt='%f') 
+#np.savetxt( f'{path}/results/part3_rk4_{t_final}s_{initial_vals[0]:.2f}_{initial_vals[1]:.2f}_{initial_vals[2]:.3f}_{initial_vals[3]:.3f}_{dt*1e6}us_timesteps.csv', partb, delimiter=',', header='theta1,theta2,omega1,omega2,t', comments='', fmt='%f') 

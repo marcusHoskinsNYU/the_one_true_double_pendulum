@@ -90,8 +90,8 @@ omega2=0
 initial_vals=np.array([ theta1 , theta2 , omega1, omega2], np.float64) # a vector of our initial conditions for x, y, vx and vy
 
 
-dt=0.00001
-t_final=80
+dt=10e-6
+t_final=20
 
 partb=leapfrog(initial_vals,t_final=t_final,dt=dt)
 np.savetxt(f'{path}/results/partb_leapfrog_{t_final}s_{dt*1e6}us_timesteps.csv', partb, delimiter=',', header='theta1,theta2,omega1,omega2,t', comments='', fmt='%f') 

@@ -79,9 +79,17 @@ omega2=0
 
 initial_vals=np.array([ theta1 , theta2 , omega1, omega2], np.float64) # a vector of our initial conditions for x, y, vx and vy
 
+'''
 
 dt=0.05
 t_final=80
 
 partb=leapfrog(initial_vals,t_final=t_final,dt=dt)
 np.savetxt(f'partb_leapfrog_{t_final}s_{dt*1e3}ms_timesteps.csv', partb, delimiter=',', header='theta1,theta2,omega1,omega2,t', comments='', fmt='%f') 
+'''
+tsteps=np.arange(500,3500,100) #microseconds
+
+
+# for timestep in tsteps:
+#     partb=np.column_stack(leapfrog(r=initial_vals.copy(), t_final=t_final, dt=timestep*1e-6, ))
+#     np.savetxt( f'{path}/results/leapfrog/partb_leapfrog_{t_final}s_{timestep}us_timesteps.csv', partb, delimiter=',', header='theta1,theta2,omega1,omega2,t', comments='', fmt='%f') 

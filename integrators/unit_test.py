@@ -17,7 +17,7 @@ w=4
 x0=1
 v0=0
 
-acceptable_err= tfinal * dt**4 #The avg error per time step should be proportional to N*dt^5 which is of order dt^4
+acceptable_err= 1e-12
 
 def sho(r):
 
@@ -40,10 +40,14 @@ def test_integrator():
     #check that x(t)=cos(wt)
  
     assert( all( np.abs( xt - x0 * np.cos( w * tvals ) ) < acceptable_err) )
+    print(f'theta error below {acceptable_err}')
+
 
     #check that v(t)=-w*sin(wt)
 
-    assert( all( np.abs(vt + w * v0 * np.sin(w*tvals) ) ) < acceptable_err)
+    assert( all( np.abs(vt + w * v0 * np.sin(w*tvals) )  < acceptable_err)) 
+
+    print(f'omega error below {acceptable_err}')
 
 
 test_integrator()
