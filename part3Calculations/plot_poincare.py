@@ -7,13 +7,13 @@ path = os.getcwd()
 
 def poincare_section(file, l = .4, i = 0 , k = 0):
     """
-    Generate the Poincaré section for the system.
-    reads in a file from results folder
-    plots theta2 vs. omega2 for points in poincaire section
+    this takes in a csv file from the RK4 and creates a poincare section 
+    then it plots this to results/poincare_plots
 
+    indices:
+    i : what energy region
+    k : what plot when we mass produce data. 
     
-    It would be nice to have this also display the total energy of the system given the inital conditions
-    Perhaps the file name in rk4 could display total energy or initial conditions 
     """
     #read file and assign values
     theta1, theta2, omega1, omega2, time = file[:,0], file[:,1], file[:,2], file[:,3], file[:,4]
