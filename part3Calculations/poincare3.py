@@ -6,6 +6,8 @@ from plot_poincare import poincare_section
 path = os.getcwd()
 
 """
+This is not a necessary file but it helped my peace of mind. 
+
 Fiducial initial conditions:
 theta1=np.pi
 theta2=0
